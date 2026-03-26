@@ -8,16 +8,17 @@ const Hero = () => {
   };
 
   return (
-    <section id="accueil" className="relative h-[75dvh] md:h-screen w-full overflow-hidden">
+    <section id="accueil" className="relative h-[50svh] md:h-screen w-full overflow-hidden transition-all duration-700">
       {/* Background Image */}
       <div className="absolute inset-0">
         <img
           src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=1920&q=80"
           alt="Villa de luxe Marrakech Benak Hills"
-          className="w-full h-full object-cover object-[50%_30%]"
+          className="w-full h-full object-cover object-center sm:object-center"
           loading="eager"
         />
-        <div className="absolute inset-0 hero-overlay-light" />
+        <div className="absolute inset-0 bg-black/10 md:bg-transparent" />
+        <div className="absolute inset-0 hero-overlay-extra-light" />
       </div>
 
       {/* Content */}

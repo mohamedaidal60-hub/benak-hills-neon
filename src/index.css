@@ -114,11 +114,11 @@
     );
   }
 
-  .hero-overlay-light {
+  .hero-overlay-extra-light {
     background: linear-gradient(to bottom, 
-      hsla(220, 20%, 7%, 0.1) 0%, 
-      hsla(220, 20%, 7%, 0.3) 50%, 
-      hsla(220, 20%, 7%, 0.6) 100%
+      hsla(220, 20%, 7%, 0.05) 0%, 
+      hsla(220, 20%, 7%, 0.15) 50%, 
+      hsla(220, 20%, 7%, 0.45) 100%
     );
   }
 
