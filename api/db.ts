@@ -1,11 +1,14 @@
 import { Pool } from '@neondatabase/serverless';
 
-if (!process.env.DATABASE_URL) {
+const rawDb = process.env.DATABASE_URL || "";
+const cleanDb = rawDb.replace(/[\r\nN]+$/, '').trim();
+
+if (!cleanDb) {
   console.warn("Neon DATABASE_URL is not set.");
 }
 
 export const pool = new Pool({
-  connectionString: process.env.DATABASE_URL,
+  connectionString: cleanDb || undefined,
 });
 
 export async function initDb() {
