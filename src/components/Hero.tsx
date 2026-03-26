@@ -8,14 +8,13 @@ const Hero = () => {
   };
 
   return (
-    <section id="accueil" className="relative h-[100svh] w-full overflow-hidden">
+    <section id="accueil" className="relative h-[90svh] md:h-screen w-full overflow-hidden">
       {/* Background Image */}
       <div className="absolute inset-0">
         <img
           src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=1920&q=80"
           alt="Villa de luxe Marrakech Benak Hills"
-          className="w-full h-full object-cover object-[50%_35%] transition-transform duration-[2000ms] scale-105"
-          style={{ transformOrigin: 'center 35%' }}
+          className="w-full h-full object-cover object-top md:object-center"
           loading="eager"
         />
         <div className="absolute inset-0 hero-overlay-extra-light" />
@@ -27,7 +26,7 @@ const Hero = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.5 }}
-          className="text-4xl md:text-7xl lg:text-8xl font-heading font-normal tracking-luxury"
+          className="text-2xl md:text-7xl lg:text-8xl font-heading font-normal tracking-luxury"
         >
           <span className="text-foreground">BENAK </span>
           <span className="gold-text-gradient">HILLS</span>
