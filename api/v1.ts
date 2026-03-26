@@ -2,7 +2,7 @@ import { pool, initDb } from './db.js';
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
 
-const JWT_SECRET = process.env.JWT_SECRET || 'fallback_secret_key_123';
+const JWT_SECRET = process.env.JWT_SECRET ? process.env.JWT_SECRET.trim() : 'fallback_secret_key_123';
 
 export default async function handler(req: any, res: any) {
   try {

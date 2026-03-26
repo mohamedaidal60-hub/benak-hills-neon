@@ -1,6 +1,9 @@
 import { motion } from "framer-motion";
+import { useLanguage } from "../i18n/LanguageContext";
 
 const Concept = () => {
+  const { t } = useLanguage();
+  
   return (
     <section id="concept" className="py-24 px-4 bg-background">
       <div className="max-w-7xl mx-auto">
@@ -12,7 +15,7 @@ const Concept = () => {
           transition={{ duration: 0.8 }}
           className="text-center mb-4"
         >
-          <span className="text-gold text-xs tracking-luxury font-body uppercase">Le Concept</span>
+          <span className="text-gold text-xs tracking-luxury font-body uppercase">{t('concept.badge')}</span>
         </motion.div>
 
         <motion.h2
@@ -22,7 +25,7 @@ const Concept = () => {
           transition={{ duration: 0.8, delay: 0.1 }}
           className="text-3xl md:text-5xl font-heading text-center mb-12"
         >
-          La Villa Signature 2
+          {t('concept.title')}
         </motion.h2>
 
         <div className="grid md:grid-cols-2 gap-16 items-center">
@@ -35,25 +38,20 @@ const Concept = () => {
             className="space-y-6"
           >
             <p className="text-foreground/80 font-body leading-relaxed">
-              Superbe maison de <span className="text-gold font-semibold">240 m²</span>, avec piscine privée, édifiée sur une parcelle de
-              <span className="text-gold font-semibold"> 300 m²</span> et plus, offrant un cadre de vie unique et prestigieux.
+              {t('concept.desc1')}
             </p>
             <p className="text-foreground/70 font-body leading-relaxed">
-              Avec des terrains titrés et entièrement viabilisés, votre acquisition est
-              totalement sécurisée. Modulable selon vos envies avec 4 plans architecturaux
-              distincts.
+              {t('concept.desc2')}
             </p>
             <p className="text-foreground/70 font-body leading-relaxed">
-              Investir dans l'immobilier de luxe à Marrakech n'a jamais été aussi serein.
-              Benak Hills redéfinit le haut de gamme marocain en alliant architecture
-              contemporaine et finitions nobles.
+              {t('concept.desc3')}
             </p>
 
             {/* Price */}
             <div className="pt-6 border-t border-border">
-              <p className="text-foreground/60 font-body text-sm tracking-wide">Offre de lancement</p>
+              <p className="text-foreground/60 font-body text-sm tracking-wide">{t('concept.launchOffer')}</p>
               <p className="text-2xl md:text-3xl font-heading mt-2">
-                <span className="text-foreground">À partir de </span>
+                <span className="text-foreground">{t('concept.priceFrom')} </span>
                 <span className="text-gold font-semibold">4.400.000 MAD</span>
               </p>
             </div>
@@ -82,3 +80,4 @@ const Concept = () => {
 };
 
 export default Concept;
+

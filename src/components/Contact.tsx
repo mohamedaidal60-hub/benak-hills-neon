@@ -3,9 +3,11 @@ import { motion } from "framer-motion";
 import { Send, Phone, Mail, MapPin, CheckCircle } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
+import { useLanguage } from "../i18n/LanguageContext";
 
 const Contact = () => {
   const { toast } = useToast();
+  const { t, language } = useLanguage();
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [form, setForm] = useState({
@@ -38,14 +40,18 @@ const Contact = () => {
     setLoading(false);
 
     if (error) {
-      toast({ title: "Erreur", description: "Impossible d'envoyer votre demande. Réessayez.", variant: "destructive" });
+      toast({ 
+        title: language === 'fr' ? "Erreur" : "Error", 
+        description: language === 'fr' ? "Impossible d'envoyer votre demande. Réessayez." : "Failed to send request. Please try again.", 
+        variant: "destructive" 
+      });
       return;
     }
 
     setSubmitted(true);
     toast({
-      title: "Demande envoyée !",
-      description: "Nous vous recontacterons dans les plus brefs délais.",
+      title: t('contact.success'),
+      description: t('contact.successDesc'),
     });
   };
 
@@ -60,18 +66,18 @@ const Contact = () => {
           >
             <CheckCircle className="w-16 h-16 text-gold mx-auto mb-6" />
           </motion.div>
-          <h2 className="text-3xl font-heading mb-4">Merci pour votre intérêt !</h2>
+          <h2 className="text-3xl font-heading mb-4">{t('contact.success')}</h2>
           <p className="text-foreground/70 font-body">
-            Votre demande a bien été reçue. Notre équipe vous recontactera dans les plus brefs délais.
+            {t('contact.successDesc')}
           </p>
           <button
             onClick={() => {
               setSubmitted(false);
               setForm({ name: "", email: "", phone: "", budget: "", configuration: "", message: "" });
             }}
-            className="mt-8 border border-gold text-gold px-6 py-3 text-xs tracking-wide-luxury font-body hover:bg-primary hover:text-primary-foreground transition-all duration-300"
+            className="mt-8 border border-gold text-gold px-6 py-3 text-xs tracking-wide-luxury font-body hover:bg-gold hover:text-primary-foreground transition-all duration-300"
           >
-            ENVOYER UNE AUTRE DEMANDE
+            {language === 'fr' ? "ENVOYER UNE AUTRE DEMANDE" : "SEND ANOTHER REQUEST"}
           </button>
         </div>
       </section>
@@ -87,7 +93,7 @@ const Contact = () => {
           viewport={{ once: true }}
           className="text-center mb-4"
         >
-          <span className="text-gold text-xs tracking-luxury font-body uppercase">Contactez-nous</span>
+          <span className="text-gold text-xs tracking-luxury font-body uppercase">{t('contact.badge')}</span>
         </motion.div>
 
         <motion.h2
@@ -97,7 +103,7 @@ const Contact = () => {
           transition={{ delay: 0.1 }}
           className="text-3xl md:text-5xl font-heading text-center mb-6"
         >
-          Réservez Votre Villa
+          {t('contact.title')}
         </motion.h2>
 
         <motion.p
@@ -107,7 +113,7 @@ const Contact = () => {
           transition={{ delay: 0.2 }}
           className="text-center text-foreground/70 font-body max-w-2xl mx-auto mb-16"
         >
-          Remplissez le formulaire ci-dessous et notre équipe vous contactera pour vous accompagner dans votre projet.
+          {t('contact.description')}
         </motion.p>
 
         <div className="grid md:grid-cols-3 gap-12">
@@ -122,7 +128,7 @@ const Contact = () => {
                 <Phone className="w-5 h-5 text-gold" />
               </div>
               <div>
-                <p className="text-foreground/60 text-sm font-body">Téléphone</p>
+                <p className="text-foreground/60 text-sm font-body">{language === 'fr' ? "Téléphone" : "Phone"}</p>
                 <a href="tel:+212786360767" className="text-foreground font-body hover:text-gold transition-colors">
                   +212 786 360 767
                 </a>
@@ -146,7 +152,7 @@ const Contact = () => {
                 <MapPin className="w-5 h-5 text-gold" />
               </div>
               <div>
-                <p className="text-foreground/60 text-sm font-body">Adresse</p>
+                <p className="text-foreground/60 text-sm font-body">Adresse / Address</p>
                 <p className="text-foreground font-body">Marrakech, Maroc</p>
               </div>
             </div>
@@ -162,28 +168,28 @@ const Contact = () => {
           >
             <div className="grid sm:grid-cols-2 gap-6">
               <div>
-                <label className="text-xs text-foreground/60 font-body tracking-wide uppercase block mb-2">Nom complet *</label>
+                <label className="text-xs text-foreground/60 font-body tracking-wide uppercase block mb-2">{t('contact.name')}</label>
                 <input type="text" name="name" value={form.name} onChange={handleChange} required maxLength={100}
                   className="w-full bg-transparent border border-border px-4 py-3 text-foreground font-body focus:border-gold outline-none transition-colors"
-                  placeholder="Votre nom" />
+                  placeholder="" />
               </div>
               <div>
-                <label className="text-xs text-foreground/60 font-body tracking-wide uppercase block mb-2">Email *</label>
+                <label className="text-xs text-foreground/60 font-body tracking-wide uppercase block mb-2">{t('contact.email')}</label>
                 <input type="email" name="email" value={form.email} onChange={handleChange} required maxLength={255}
                   className="w-full bg-transparent border border-border px-4 py-3 text-foreground font-body focus:border-gold outline-none transition-colors"
-                  placeholder="votre@email.com" />
+                  placeholder="" />
               </div>
               <div>
-                <label className="text-xs text-foreground/60 font-body tracking-wide uppercase block mb-2">Téléphone *</label>
+                <label className="text-xs text-foreground/60 font-body tracking-wide uppercase block mb-2">{t('contact.phone')}</label>
                 <input type="tel" name="phone" value={form.phone} onChange={handleChange} required maxLength={20}
                   className="w-full bg-transparent border border-border px-4 py-3 text-foreground font-body focus:border-gold outline-none transition-colors"
-                  placeholder="+212 6XX XXX XXX" />
+                  placeholder="" />
               </div>
               <div>
-                <label className="text-xs text-foreground/60 font-body tracking-wide uppercase block mb-2">Budget estimé</label>
+                <label className="text-xs text-foreground/60 font-body tracking-wide uppercase block mb-2">{t('contact.budget')}</label>
                 <select name="budget" value={form.budget} onChange={handleChange}
                   className="w-full bg-transparent border border-border px-4 py-3 text-foreground font-body focus:border-gold outline-none transition-colors">
-                  <option value="" className="bg-card">Sélectionner</option>
+                  <option value="" className="bg-card">{language === 'fr' ? "Sélectionner" : "Select"}</option>
                   <option value="4-5M" className="bg-card">4 - 5 Millions MAD</option>
                   <option value="5-6M" className="bg-card">5 - 6 Millions MAD</option>
                   <option value="6-8M" className="bg-card">6 - 8 Millions MAD</option>
@@ -193,27 +199,27 @@ const Contact = () => {
             </div>
 
             <div>
-              <label className="text-xs text-foreground/60 font-body tracking-wide uppercase block mb-2">Configuration souhaitée</label>
+              <label className="text-xs text-foreground/60 font-body tracking-wide uppercase block mb-2">{t('contact.config')}</label>
               <select name="configuration" value={form.configuration} onChange={handleChange}
                 className="w-full bg-transparent border border-border px-4 py-3 text-foreground font-body focus:border-gold outline-none transition-colors">
-                <option value="" className="bg-card">Sélectionner une configuration</option>
-                <option value="5-chambres" className="bg-card">5 Chambres</option>
-                <option value="4-chambres-master" className="bg-card">4 Chambres avec Master-room</option>
-                <option value="3-chambres-master" className="bg-card">3 Chambres avec Master-room</option>
-                <option value="4-chambres-etage" className="bg-card">4 Chambres Étage</option>
+                <option value="" className="bg-card">{language === 'fr' ? "Sélectionner une configuration" : "Select a configuration"}</option>
+                <option value="5-chambres" className="bg-card">{language === 'fr' ? "5 Chambres" : "5 Bedrooms"}</option>
+                <option value="4-chambres-master" className="bg-card">{language === 'fr' ? "4 Chambres avec Master-room" : "4 Bedrooms with Master-room"}</option>
+                <option value="3-chambres-master" className="bg-card">{language === 'fr' ? "3 Chambres avec Master-room" : "3 Bedrooms with Master-room"}</option>
+                <option value="4-chambres-etage" className="bg-card">{language === 'fr' ? "4 Chambres Étage" : "4 Bedrooms Upstairs"}</option>
               </select>
             </div>
 
             <div>
-              <label className="text-xs text-foreground/60 font-body tracking-wide uppercase block mb-2">Message</label>
+              <label className="text-xs text-foreground/60 font-body tracking-wide uppercase block mb-2">{t('contact.message')}</label>
               <textarea name="message" value={form.message} onChange={handleChange} rows={4} maxLength={1000}
                 className="w-full bg-transparent border border-border px-4 py-3 text-foreground font-body focus:border-gold outline-none transition-colors resize-none"
-                placeholder="Votre message..." />
+                placeholder="" />
             </div>
 
             <button type="submit" disabled={loading}
-              className="border border-gold text-gold px-8 py-4 text-xs tracking-luxury font-body flex items-center gap-2 hover:bg-primary hover:text-primary-foreground transition-all duration-300 disabled:opacity-50">
-              {loading ? "ENVOI EN COURS..." : "ENVOYER MA DEMANDE"}
+              className="border border-gold text-gold px-8 py-4 text-xs tracking-luxury font-body flex items-center gap-2 hover:bg-gold hover:text-primary-foreground transition-all duration-300 disabled:opacity-50">
+              {loading ? t('contact.sending') : t('submit')}
               <Send className="w-4 h-4" />
             </button>
           </motion.form>

@@ -1,7 +1,10 @@
 import { Link } from "react-router-dom";
 import { Phone, Mail } from "lucide-react";
+import { useLanguage } from "../i18n/LanguageContext";
 
 const Footer = () => {
+  const { t } = useLanguage();
+
   return (
     <footer className="bg-background border-t border-border">
       <div className="max-w-7xl mx-auto px-6 py-16">
@@ -22,15 +25,13 @@ const Footer = () => {
               </div>
             </div>
             <p className="text-foreground/60 font-body text-sm leading-relaxed max-w-md">
-              L'élégance architecturale au service de votre sérénité.<br />
-              L'immobilier de prestige à Marrakech redéfini.<br />
-              Réservez dès maintenant votre future villa.
+              {t('footer.description')}
             </p>
           </div>
 
           {/* Contact */}
           <div>
-            <h4 className="font-heading text-lg mb-6 italic">Contactez notre agence</h4>
+            <h4 className="font-heading text-lg mb-6 italic">{t('footer.contactAgency')}</h4>
             <div className="space-y-4">
               <a
                 href="tel:+212786360767"
@@ -59,20 +60,20 @@ const Footer = () => {
       <div className="border-t border-border">
         <div className="max-w-7xl mx-auto px-6 py-6 flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-foreground/40 text-xs font-body tracking-wide">
-            © 2026 BENAK HILLS. TOUS DROITS RÉSERVÉS. IMMOBILIER LUXE MAROC.
+            {t('footer.rights')}
           </p>
           <div className="flex items-center gap-6">
             <Link
               to="/mentions-legales"
               className="text-foreground/40 text-xs font-body tracking-wide hover:text-gold transition-colors"
             >
-              MENTIONS LÉGALES
+              {t('footer.legal')}
             </Link>
             <Link
               to="/confidentialite"
               className="text-foreground/40 text-xs font-body tracking-wide hover:text-gold transition-colors"
             >
-              CONFIDENTIALITÉ
+              {t('footer.privacy')}
             </Link>
           </div>
         </div>
@@ -82,3 +83,4 @@ const Footer = () => {
 };
 
 export default Footer;
+

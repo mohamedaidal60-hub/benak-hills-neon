@@ -1,7 +1,10 @@
 import { motion } from "framer-motion";
 import { ChevronRight } from "lucide-react";
+import { useLanguage } from "../i18n/LanguageContext";
 
 const Hero = () => {
+  const { t } = useLanguage();
+  
   const scrollTo = (id: string) => {
     const el = document.querySelector(id);
     el?.scrollIntoView({ behavior: "smooth" });
@@ -22,10 +25,19 @@ const Hero = () => {
 
       {/* Content */}
       <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-4">
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, delay: 0.3 }}
+          className="text-gold text-xs md:text-sm font-body tracking-luxury uppercase mb-6"
+        >
+          {t('hero.subtitle')}
+        </motion.p>
+
         <motion.h1
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.3 }}
+          transition={{ duration: 1, delay: 0.5 }}
           className="text-5xl md:text-7xl lg:text-8xl font-heading font-normal tracking-luxury"
         >
           <span className="text-foreground">BENAK </span>
@@ -35,21 +47,10 @@ const Hero = () => {
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.6 }}
-          className="text-xl md:text-2xl font-heading italic text-foreground/90 mt-4"
-        >
-          Votre villa en toute sérénité
-        </motion.p>
-
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.9 }}
-          className="text-sm md:text-base text-foreground/70 max-w-2xl mt-6 font-body leading-relaxed"
+          className="text-sm md:text-base text-foreground/70 max-w-2xl mt-8 font-body leading-relaxed"
         >
-          Découvrez des villas élégantes et modulables pensées pour votre confort et
-          votre style de vie au cœur de Marrakech. Votre villa. Votre choix. Votre
-          tranquillité.
+          {t('hero.description')}
         </motion.p>
 
         <motion.button
@@ -57,9 +58,9 @@ const Hero = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 1.2 }}
           onClick={() => scrollTo("#concept")}
-          className="mt-10 border border-gold text-gold px-8 py-4 text-xs tracking-luxury font-body flex items-center gap-2 hover:bg-primary hover:text-primary-foreground transition-all duration-500 group"
+          className="mt-12 border border-gold text-gold px-8 py-4 text-xs tracking-luxury font-body flex items-center gap-2 hover:bg-gold hover:text-primary-foreground transition-all duration-500 group"
         >
-          DÉCOUVRIR LE PROJET
+          {t('hero.cta')}
           <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
         </motion.button>
       </div>
@@ -78,3 +79,4 @@ const Hero = () => {
 };
 
 export default Hero;
+

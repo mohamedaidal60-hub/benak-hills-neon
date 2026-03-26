@@ -1,12 +1,11 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useLanguage } from "../i18n/LanguageContext";
+import { translations } from "../i18n/translations";
 
-const models = [
+const modelsData = [
   {
     id: "01",
-    title: "Configuration 5 Chambres",
-    description:
-      "Cette configuration correspond à l'identique à la configuration 4 chambres avec master-room. Elle est parfaitement pensée pour offrir 5 véritables chambres indépendantes, idéales pour accueillir une grande famille dans le plus grand confort.",
     images: [
       "https://i.postimg.cc/1RTJ9TpL/Screenshot-2026-03-17-at-5-20-37-PM.png",
       "https://i.postimg.cc/6Q0xxXTP/Whats-App-Image-2026-03-16-at-1-00-22-PM-(2).jpg",
@@ -15,9 +14,6 @@ const models = [
   },
   {
     id: "02",
-    title: "4 Chambres avec Master-room",
-    description:
-      "Première configuration offrant des espaces généreux et une suite majestueuse au rez-de-chaussée. À l'étage, l'espace nuit est complété par des chambres lumineuses pour allier praticité et bien-être au quotidien.",
     images: [
       "https://i.postimg.cc/1RTJ9TpL/Screenshot-2026-03-17-at-5-20-37-PM.png",
       "https://i.postimg.cc/6Q0xxXTP/Whats-App-Image-2026-03-16-at-1-00-22-PM-(2).jpg",
@@ -26,9 +22,6 @@ const models = [
   },
   {
     id: "03",
-    title: "3 Chambres avec Master-room",
-    description:
-      "Cette troisième configuration permet de profiter d'une pièce de vie particulièrement spacieuse, tout en conservant à l'étage 3 chambres, dont une superbe master room. Les volumes généreux, la luminosité et le confort offrent un espace nuit à la fois élégant, moderne et accueillant.",
     images: [
       "https://i.postimg.cc/FHFMS8B3/Screenshot-2026-03-17-at-5-31-54-PM.png",
       "https://i.postimg.cc/hGgh0cH3/Whats-App-Image-2026-03-16-at-1-01-17-PM-(1).jpg",
@@ -37,9 +30,6 @@ const models = [
   },
   {
     id: "04",
-    title: "4 Chambres Étage",
-    description:
-      "Cette quatrième configuration permet de profiter d'une pièce de vie particulièrement spacieuse, tout comme l'option 3. À la différence près qu'à l'étage, entièrement dédié à l'espace nuit, vous trouverez 4 chambres, parfaitement pensées pour répondre à vos besoins.",
     images: [
       "https://i.postimg.cc/CKXXW1LX/Screenshot-2026-03-17-at-5-32-30-PM.png",
       "https://i.postimg.cc/TP7L2B4Q/Whats-App-Image-2026-03-16-at-1-01-16-PM.jpg",
@@ -51,8 +41,10 @@ const models = [
 const VillaModels = () => {
   const [active, setActive] = useState(0);
   const [activeImage, setActiveImage] = useState(0);
+  const { t, language } = useLanguage();
 
-  const current = models[active];
+  const currentStrings = translations[language].models.list[active];
+  const currentData = modelsData[active];
 
   return (
     <section id="modeles" className="py-24 px-4 bg-dark-surface">
@@ -63,7 +55,7 @@ const VillaModels = () => {
           viewport={{ once: true }}
           className="text-center mb-4"
         >
-          <span className="text-gold text-xs tracking-luxury font-body uppercase">Plans & Architecture</span>
+          <span className="text-gold text-xs tracking-luxury font-body uppercase">{t('models.badge')}</span>
         </motion.div>
 
         <motion.h2
@@ -73,7 +65,7 @@ const VillaModels = () => {
           transition={{ delay: 0.1 }}
           className="text-3xl md:text-5xl font-heading text-center mb-6"
         >
-          Villas Modulables sur-mesure
+          {t('models.title')}
         </motion.h2>
 
         <motion.p
@@ -83,14 +75,12 @@ const VillaModels = () => {
           transition={{ delay: 0.2 }}
           className="text-center text-foreground/70 font-body max-w-3xl mx-auto mb-16 leading-relaxed"
         >
-          Votre villa s'adapte à votre style de vie. Découvrez nos 4 configurations
-          intelligentes, pensées par nos architectes pour maximiser l'espace, la lumière
-          et le confort.
+          {t('models.description')}
         </motion.p>
 
         {/* Tabs */}
         <div className="flex flex-wrap justify-center gap-4 mb-12">
-          {models.map((m, i) => (
+          {modelsData.map((m, i) => (
             <button
               key={m.id}
               onClick={() => {
@@ -99,11 +89,11 @@ const VillaModels = () => {
               }}
               className={`px-6 py-3 text-xs tracking-wide-luxury font-body border transition-all duration-300 ${
                 active === i
-                  ? "border-gold bg-primary text-primary-foreground"
+                  ? "border-gold bg-gold text-primary-foreground"
                   : "border-border text-foreground/60 hover:border-gold/50 hover:text-foreground"
               }`}
             >
-              {m.id} — {m.title}
+              {m.id} — {translations[language].models.list[i].title}
             </button>
           ))}
         </div>
@@ -122,17 +112,17 @@ const VillaModels = () => {
             <div className="space-y-4">
               <div className="relative overflow-hidden">
                 <img
-                  src={current.images[activeImage]}
-                  alt={current.title}
+                  src={currentData.images[activeImage]}
+                  alt={currentStrings.title}
                   className="w-full h-[400px] object-cover transition-all duration-500"
                   loading="lazy"
                 />
                 <div className="absolute top-4 left-4 bg-background/80 backdrop-blur px-4 py-2">
-                  <span className="text-gold font-heading text-2xl">{current.id}</span>
+                  <span className="text-gold font-heading text-2xl">{currentData.id}</span>
                 </div>
               </div>
               <div className="flex gap-3">
-                {current.images.map((img, i) => (
+                {currentData.images.map((img, i) => (
                   <button
                     key={i}
                     onClick={() => setActiveImage(i)}
@@ -148,8 +138,8 @@ const VillaModels = () => {
 
             {/* Text */}
             <div>
-              <h3 className="text-2xl md:text-3xl font-heading mb-4">{current.title}</h3>
-              <p className="text-foreground/70 font-body leading-relaxed">{current.description}</p>
+              <h3 className="text-2xl md:text-3xl font-heading mb-4">{currentStrings.title}</h3>
+              <p className="text-foreground/70 font-body leading-relaxed">{currentStrings.desc}</p>
             </div>
           </motion.div>
         </AnimatePresence>
@@ -159,3 +149,4 @@ const VillaModels = () => {
 };
 
 export default VillaModels;
+
