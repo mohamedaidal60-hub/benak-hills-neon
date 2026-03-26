@@ -1,18 +1,16 @@
 import { useState, useEffect } from "react";
-import { Menu, X, Globe } from "lucide-react";
-import { useLanguage } from "../i18n/LanguageContext";
+import { Menu, X } from "lucide-react";
+
+const navLinks = [
+  { label: "ACCUEIL", href: "#accueil" },
+  { label: "LE DOMAINE", href: "#domaine" },
+  { label: "LES MODÈLES", href: "#modeles" },
+  { label: "GALERIE", href: "#galerie" },
+];
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  const { language, setLanguage, t } = useLanguage();
-
-  const navLinks = [
-    { label: "ACCUEIL", href: "#accueil" },
-    { label: t('nav.domaine').toUpperCase(), href: "#domaine" },
-    { label: t('nav.modeles').toUpperCase(), href: "#modeles" },
-    { label: t('nav.galerie').toUpperCase(), href: "#galerie" },
-  ];
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
@@ -26,20 +24,16 @@ const Navbar = () => {
     el?.scrollIntoView({ behavior: "smooth" });
   };
 
-  const toggleLanguage = () => {
-    setLanguage(language === 'fr' ? 'en' : 'fr');
-  };
-
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        scrolled ? "bg-background/95 backdrop-blur-md shadow-lg" : "bg-transparent"
+        scrolled ? "bg-background/95 backdrop-blur-md shadow-lg" : "bg-transparent backdrop-blur-[2px] md:backdrop-blur-0"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+      <div className="max-w-7xl mx-auto px-4 md:px-6 py-3 md:py-4 flex items-center justify-between">
         {/* Logo */}
-        <button onClick={() => scrollTo("#accueil")} className="flex items-center gap-4 group text-left">
-          <svg width="56" height="56" viewBox="0 0 40 40" fill="none" className="text-gold transition-transform duration-300 group-hover:scale-105">
+        <button onClick={() => scrollTo("#accueil")} className="flex items-center gap-3 group">
+          <svg width="40" height="40" viewBox="0 0 40 40" fill="none" className="text-gold">
             <rect x="8" y="20" width="4" height="16" rx="1" fill="currentColor" opacity="0.7" />
             <rect x="14" y="12" width="4" height="24" rx="1" fill="currentColor" opacity="0.85" />
             <rect x="20" y="4" width="4" height="32" rx="1" fill="currentColor" />
@@ -47,8 +41,8 @@ const Navbar = () => {
             <rect x="32" y="20" width="4" height="16" rx="1" fill="currentColor" opacity="0.7" />
           </svg>
           <div className="flex flex-col">
-            <span className="text-foreground font-body text-lg font-bold tracking-luxury leading-none">BENAK</span>
-            <span className="text-gold text-sm font-body tracking-luxury-wider mt-0.5">HILLS</span>
+            <span className="text-foreground font-body text-sm font-semibold tracking-luxury">BENAK</span>
+            <span className="text-gold text-xs font-body tracking-luxury">HILLS</span>
           </div>
         </button>
 
@@ -65,35 +59,18 @@ const Navbar = () => {
           ))}
         </div>
 
-        {/* Right side Actions */}
-        <div className="hidden md:flex items-center gap-4">
-          <button
-            onClick={toggleLanguage}
-            className="flex items-center gap-2 text-foreground/60 hover:text-gold text-xs font-body tracking-wide-luxury transition-colors duration-300 border border-border px-3 py-2"
-          >
-            <Globe size={14} />
-            {language.toUpperCase()}
-          </button>
-          <button
-            onClick={() => scrollTo("#contact")}
-            className="border border-gold text-gold px-6 py-2 text-xs tracking-wide-luxury font-body hover:bg-gold hover:text-primary-foreground transition-all duration-300"
-          >
-            {t('nav.contact').toUpperCase()}
-          </button>
-        </div>
+        {/* Contact Button */}
+        <button
+          onClick={() => scrollTo("#contact")}
+          className="hidden md:block border border-gold text-gold px-6 py-2 text-xs tracking-wide-luxury font-body hover:bg-primary hover:text-primary-foreground transition-all duration-300"
+        >
+          CONTACT
+        </button>
 
         {/* Mobile menu toggle */}
-        <div className="flex md:hidden items-center gap-4">
-          <button
-            onClick={toggleLanguage}
-            className="text-foreground/60 hover:text-gold text-[10px] font-body transition-colors border border-border px-2 py-1"
-          >
-            {language.toUpperCase()}
-          </button>
-          <button onClick={() => setMenuOpen(!menuOpen)} className="text-foreground">
-            {menuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
-        </div>
+        <button onClick={() => setMenuOpen(!menuOpen)} className="md:hidden text-foreground">
+          {menuOpen ? <X size={24} /> : <Menu size={24} />}
+        </button>
       </div>
 
       {/* Mobile Menu */}
@@ -111,9 +88,9 @@ const Navbar = () => {
             ))}
             <button
               onClick={() => scrollTo("#contact")}
-              className="border border-gold text-gold px-6 py-2 text-xs tracking-wide-luxury font-body hover:bg-gold hover:text-primary-foreground transition-all duration-300 mt-2"
+              className="border border-gold text-gold px-6 py-2 text-xs tracking-wide-luxury font-body hover:bg-primary hover:text-primary-foreground transition-all duration-300 mt-2"
             >
-              {t('nav.contact').toUpperCase()}
+              CONTACT
             </button>
           </div>
         </div>
@@ -123,4 +100,3 @@ const Navbar = () => {
 };
 
 export default Navbar;
-

@@ -1,23 +1,20 @@
 import { motion } from "framer-motion";
 import { ChevronRight } from "lucide-react";
-import { useLanguage } from "../i18n/LanguageContext";
 
 const Hero = () => {
-  const { t } = useLanguage();
-  
   const scrollTo = (id: string) => {
     const el = document.querySelector(id);
     el?.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
-    <section id="accueil" className="relative h-screen w-full overflow-hidden">
+    <section id="accueil" className="relative h-[100dvh] w-full overflow-hidden">
       {/* Background Image */}
       <div className="absolute inset-0">
         <img
           src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=1920&q=80"
           alt="Villa de luxe Marrakech Benak Hills"
-          className="w-full h-full object-cover"
+          className="w-full h-full object-cover object-[50%_35%]"
           loading="eager"
         />
         <div className="absolute inset-0 hero-overlay" />
@@ -25,19 +22,10 @@ const Hero = () => {
 
       {/* Content */}
       <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-4">
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.3 }}
-          className="text-gold text-xs md:text-sm font-body tracking-luxury uppercase mb-6"
-        >
-          {t('hero.subtitle')}
-        </motion.p>
-
         <motion.h1
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.5 }}
+          transition={{ duration: 1, delay: 0.3 }}
           className="text-5xl md:text-7xl lg:text-8xl font-heading font-normal tracking-luxury"
         >
           <span className="text-foreground">BENAK </span>
@@ -47,10 +35,21 @@ const Hero = () => {
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.9 }}
-          className="text-sm md:text-base text-foreground/70 max-w-2xl mt-8 font-body leading-relaxed"
+          transition={{ duration: 1, delay: 0.6 }}
+          className="text-xl md:text-2xl font-heading italic text-foreground/90 mt-4"
         >
-          {t('hero.description')}
+          Votre villa en toute sérénité
+        </motion.p>
+
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, delay: 0.9 }}
+          className="text-sm md:text-base text-foreground/70 max-w-2xl mt-6 font-body leading-relaxed"
+        >
+          Découvrez des villas élégantes et modulables pensées pour votre confort et
+          votre style de vie au cœur de Marrakech. Votre villa. Votre choix. Votre
+          tranquillité.
         </motion.p>
 
         <motion.button
@@ -58,9 +57,9 @@ const Hero = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 1.2 }}
           onClick={() => scrollTo("#concept")}
-          className="mt-12 border border-gold text-gold px-8 py-4 text-xs tracking-luxury font-body flex items-center gap-2 hover:bg-gold hover:text-primary-foreground transition-all duration-500 group"
+          className="mt-10 border border-gold text-gold px-8 py-4 text-xs tracking-luxury font-body flex items-center gap-2 hover:bg-primary hover:text-primary-foreground transition-all duration-500 group"
         >
-          {t('hero.cta')}
+          DÉCOUVRIR LE PROJET
           <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
         </motion.button>
       </div>
@@ -79,4 +78,3 @@ const Hero = () => {
 };
 
 export default Hero;
-
