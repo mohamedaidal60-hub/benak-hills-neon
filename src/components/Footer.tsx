@@ -11,8 +11,8 @@ const Footer = () => {
         <div className="grid md:grid-cols-2 gap-12">
           {/* Brand */}
           <div>
-            <div className="flex items-center gap-3 mb-6">
-              <svg width="36" height="36" viewBox="0 0 40 40" fill="none" className="text-gold">
+            <div className="flex items-center gap-4 mb-6">
+              <svg width="48" height="48" viewBox="0 0 40 40" fill="none" className="text-gold">
                 <rect x="8" y="20" width="4" height="16" rx="1" fill="currentColor" opacity="0.7" />
                 <rect x="14" y="12" width="4" height="24" rx="1" fill="currentColor" opacity="0.85" />
                 <rect x="20" y="4" width="4" height="32" rx="1" fill="currentColor" />
@@ -20,8 +20,8 @@ const Footer = () => {
                 <rect x="32" y="20" width="4" height="16" rx="1" fill="currentColor" opacity="0.7" />
               </svg>
               <div className="flex flex-col">
-                <span className="text-foreground font-body text-sm font-semibold tracking-luxury">BENAK</span>
-                <span className="text-gold text-xs font-body tracking-luxury">HILLS</span>
+                <span className="text-foreground font-body text-md font-bold tracking-luxury-wider leading-none">BENAK</span>
+                <span className="text-gold text-xs font-body tracking-luxury-widest mt-0.5">HILLS</span>
               </div>
             </div>
             <p className="text-foreground/60 font-body text-sm leading-relaxed max-w-md">

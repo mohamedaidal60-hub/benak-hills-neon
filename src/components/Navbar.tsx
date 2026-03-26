@@ -38,8 +38,8 @@ const Navbar = () => {
     >
       <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
         {/* Logo */}
-        <button onClick={() => scrollTo("#accueil")} className="flex items-center gap-3 group text-left">
-          <svg width="40" height="40" viewBox="0 0 40 40" fill="none" className="text-gold">
+        <button onClick={() => scrollTo("#accueil")} className="flex items-center gap-4 group text-left">
+          <svg width="56" height="56" viewBox="0 0 40 40" fill="none" className="text-gold transition-transform duration-300 group-hover:scale-105">
             <rect x="8" y="20" width="4" height="16" rx="1" fill="currentColor" opacity="0.7" />
             <rect x="14" y="12" width="4" height="24" rx="1" fill="currentColor" opacity="0.85" />
             <rect x="20" y="4" width="4" height="32" rx="1" fill="currentColor" />
@@ -47,8 +47,8 @@ const Navbar = () => {
             <rect x="32" y="20" width="4" height="16" rx="1" fill="currentColor" opacity="0.7" />
           </svg>
           <div className="flex flex-col">
-            <span className="text-foreground font-body text-sm font-semibold tracking-luxury">BENAK</span>
-            <span className="text-gold text-xs font-body tracking-luxury">HILLS</span>
+            <span className="text-foreground font-body text-lg font-bold tracking-luxury leading-none">BENAK</span>
+            <span className="text-gold text-sm font-body tracking-luxury-wider mt-0.5">HILLS</span>
           </div>
         </button>
 
