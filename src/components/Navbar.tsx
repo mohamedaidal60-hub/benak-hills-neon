@@ -33,13 +33,7 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto px-4 md:px-6 py-3 md:py-4 flex items-center justify-between">
         {/* Logo */}
         <button onClick={() => scrollTo("#accueil")} className="flex items-center gap-3 group">
-          <svg width="40" height="40" viewBox="0 0 40 40" fill="none" className="text-gold">
-            <rect x="8" y="20" width="4" height="16" rx="1" fill="currentColor" opacity="0.7" />
-            <rect x="14" y="12" width="4" height="24" rx="1" fill="currentColor" opacity="0.85" />
-            <rect x="20" y="4" width="4" height="32" rx="1" fill="currentColor" />
-            <rect x="26" y="12" width="4" height="24" rx="1" fill="currentColor" opacity="0.85" />
-            <rect x="32" y="20" width="4" height="16" rx="1" fill="currentColor" opacity="0.7" />
-          </svg>
+          <img src="/logo.jpg" alt="Benak Hills Logo" className="h-[40px] w-[60px] object-cover mix-blend-screen drop-shadow-sm" />
           <div className="flex flex-col">
             <span className="text-foreground font-body text-sm font-semibold tracking-luxury">BENAK</span>
             <span className="text-gold text-xs font-body tracking-luxury">HILLS</span>
