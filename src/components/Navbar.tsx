@@ -34,11 +34,7 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto px-4 md:px-6 py-3 md:py-4 flex items-center justify-between">
         {/* Logo */}
         <button onClick={() => scrollTo("#accueil")} className="flex items-center gap-3 group">
-          <img src="/logo.jpg" alt="Benak Hills Logo" className="h-[40px] w-[60px] object-cover mix-blend-screen drop-shadow-sm" />
-          <div className="flex flex-col">
-            <span className="text-foreground font-body text-sm font-semibold tracking-luxury">BENAK</span>
-            <span className="text-gold text-xs font-body tracking-luxury">HILLS</span>
-          </div>
+          <img src="/logo_old.png" alt="Benak Hills Logo" className="h-[40px] w-auto object-contain" />
         </button>
 
         {/* Desktop Links */}
