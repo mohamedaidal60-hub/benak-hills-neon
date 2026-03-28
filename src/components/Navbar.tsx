@@ -34,7 +34,7 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto px-4 md:px-6 py-3 md:py-4 flex items-center justify-between">
         {/* Logo */}
         <button onClick={() => scrollTo("#accueil")} className="flex items-center gap-3 group">
-          <img src="/logo_old.png" alt="Benak Hills Logo" className="h-[40px] w-auto object-contain" />
+          <img src="/logo_final.png" alt="Benak Hills Logo" className="h-[45px] w-auto object-contain brightness-110" />
         </button>
 
         {/* Desktop Links */}
