@@ -219,7 +219,7 @@ const Contact = () => {
 
             <button type="submit" disabled={loading}
               className="border border-gold text-gold px-8 py-4 text-xs tracking-luxury font-body flex items-center gap-2 hover:bg-gold hover:text-primary-foreground transition-all duration-300 disabled:opacity-50">
-              {loading ? t('contact.sending') : t('submit')}
+              {loading ? t('contact.sending') : t('contact.submit')}
               <Send className="w-4 h-4" />
             </button>
           </motion.form>
