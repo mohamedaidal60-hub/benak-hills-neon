@@ -6,6 +6,7 @@ const navLinks = [
   { label: "LE DOMAINE", href: "#domaine" },
   { label: "LES MODÈLES", href: "#modeles" },
   { label: "GALERIE", href: "#galerie" },
+  { label: "CONTACT", href: "#contact" },
 ];
 
 const Navbar = () => {

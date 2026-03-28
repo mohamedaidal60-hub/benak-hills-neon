@@ -7,33 +7,33 @@ const modelsData = [
   {
     id: "01",
     images: [
-      "https://i.postimg.cc/1RTJ9TpL/Screenshot-2026-03-17-at-5-20-37-PM.png",
-      "https://i.postimg.cc/6Q0xxXTP/Whats-App-Image-2026-03-16-at-1-00-22-PM-(2).jpg",
-      "https://i.postimg.cc/Nj6WRc80/Whats-App-Image-2026-03-16-at-1-00-22-PM.jpg",
+      "/gallery/combined-plan.jpeg",
+      "/gallery/image1.jpg",
+      "/gallery/image2.jpg",
     ],
   },
   {
     id: "02",
     images: [
-      "https://i.postimg.cc/1RTJ9TpL/Screenshot-2026-03-17-at-5-20-37-PM.png",
-      "https://i.postimg.cc/6Q0xxXTP/Whats-App-Image-2026-03-16-at-1-00-22-PM-(2).jpg",
-      "https://i.postimg.cc/Kz27L6NF/Whats-App-Image-2026-03-16-at-1-01-16-PM-(2).jpg",
+      "/gallery/combined-plan.jpeg",
+      "/gallery/image3.jpg",
+      "/gallery/image4.jpg",
     ],
   },
   {
     id: "03",
     images: [
-      "https://i.postimg.cc/FHFMS8B3/Screenshot-2026-03-17-at-5-31-54-PM.png",
-      "https://i.postimg.cc/hGgh0cH3/Whats-App-Image-2026-03-16-at-1-01-17-PM-(1).jpg",
-      "https://i.postimg.cc/Kz27L6NF/Whats-App-Image-2026-03-16-at-1-01-16-PM-(2).jpg",
+      "/gallery/image13.jpg",
+      "/gallery/image5.jpg",
+      "/gallery/image6.jpg",
     ],
   },
   {
     id: "04",
     images: [
-      "https://i.postimg.cc/CKXXW1LX/Screenshot-2026-03-17-at-5-32-30-PM.png",
-      "https://i.postimg.cc/TP7L2B4Q/Whats-App-Image-2026-03-16-at-1-01-16-PM.jpg",
-      "https://i.postimg.cc/6Q0xxXTP/Whats-App-Image-2026-03-16-at-1-00-22-PM-(2).jpg",
+      "/gallery/image14.jpg",
+      "/gallery/image7.jpg",
+      "/gallery/image8.jpg",
     ],
   },
 ];
@@ -114,7 +114,7 @@ const VillaModels = () => {
                 <img
                   src={currentData.images[activeImage]}
                   alt={currentStrings.title}
-                  className="w-full h-[400px] object-cover transition-all duration-500"
+                  className="w-full h-auto max-h-[500px] object-contain bg-background/5 transition-all duration-500"
                   loading="lazy"
                 />
                 <div className="absolute top-4 left-4 bg-background/80 backdrop-blur px-4 py-2">
